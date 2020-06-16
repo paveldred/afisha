@@ -1,8 +1,11 @@
 package ru.netology.manager;
 
+import lombok.NoArgsConstructor;
 import ru.netology.domain.CinemaItem;
 
+@NoArgsConstructor
 public class CinemaManager {
+    public int countCinema = 10;
     private CinemaItem[] items = new CinemaItem[0];
 
     public void add(CinemaItem item) {
@@ -14,33 +17,20 @@ public class CinemaManager {
         items = tmp;
     }
 
-
     public CinemaItem[] getLastCinema() {
-        int getLastId = 1;
-
-        CinemaItem[] result = new CinemaItem[getLastId];
-        // перебираем массив в прямом порядке
-        // но кладём в результаты в обратном
-
-        for (int i = 0; i < getLastId; i++) {
+        CinemaItem[] result = new CinemaItem[getCountCinema()];
+        for (int i = 0; i < getCountCinema(); i++) {
             int index = items.length - i - 1;
             result[i] = items[index];
         }
         return result;
     }
 
-//  // наивная реализация
-//  public void removeById(int id) {
-//    int length = items.length - 1;
-//    PurchaseItem[] tmp = new PurchaseItem[length];
-//    int index = 0;
-//    for (PurchaseItem item : items) {
-//      if (item.getId() != id) {
-//        tmp[index] = item;
-//        index++;
-//      }
-//    }
-//    // меняем наши элементы
-//    items = tmp;
-//  }
+    public void setCountCinema(int countCinema) {
+        this.countCinema = countCinema;
+    }
+
+    public int getCountCinema() {
+        return countCinema;
+    }
 }
