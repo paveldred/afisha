@@ -5,8 +5,13 @@ import ru.netology.domain.CinemaItem;
 
 @NoArgsConstructor
 public class CinemaManager {
-    public int countCinema = 10;
     private CinemaItem[] items = new CinemaItem[0];
+    public int defaultCinemaLength = 10;
+    private int customCinemaLength;
+
+    public CinemaManager(int customCinemaLength) {
+        this.customCinemaLength = customCinemaLength;
+    }
 
     public void add(CinemaItem item) {
         int length = items.length + 1;
@@ -18,19 +23,18 @@ public class CinemaManager {
     }
 
     public CinemaItem[] getLastCinema() {
-        CinemaItem[] result = new CinemaItem[getCountCinema()];
-        for (int i = 0; i < getCountCinema(); i++) {
+        int resultLength = items.length;
+
+        if (customCinemaLength == 0 && items.length >= defaultCinemaLength) {
+            resultLength = defaultCinemaLength;
+        } if (customCinemaLength != 0 && items.length >= customCinemaLength)
+            resultLength = customCinemaLength;
+
+        CinemaItem[] result = new CinemaItem[resultLength];
+        for (int i = 0; i < resultLength; i++) {
             int index = items.length - i - 1;
             result[i] = items[index];
         }
         return result;
-    }
-
-    public void setCountCinema(int countCinema) {
-        this.countCinema = countCinema;
-    }
-
-    public int getCountCinema() {
-        return countCinema;
     }
 }

@@ -9,8 +9,8 @@ class CinemaManagerAddCinemaTest {
 
     @Test
     void add() {
-        CinemaManager manager = new CinemaManager();
-        manager.setCountCinema(1);
+        CinemaManager manager = new CinemaManager(1);
+//        manager.setDefaultCountCinema(1);
         CinemaItem cinema1 = new CinemaItem(1,"name1","picture1.jpg", 1,true);
         manager.add(cinema1);
         CinemaItem[] actual = manager.getLastCinema();
